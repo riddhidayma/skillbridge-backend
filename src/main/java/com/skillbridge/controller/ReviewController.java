@@ -9,7 +9,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/reviews")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {
+        "http://localhost:4200",
+        "https://skillbridge-sepia.vercel.app"
+})
 public class ReviewController {
 
     private final ReviewService reviewService;
