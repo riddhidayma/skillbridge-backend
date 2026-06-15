@@ -1,5 +1,6 @@
 package com.skillbridge.controller;
 
+import com.skillbridge.dto.ReviewRequest;
 import com.skillbridge.entity.Review;
 import com.skillbridge.service.ReviewService;
 import org.springframework.http.ResponseEntity;
@@ -9,10 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/reviews")
-@CrossOrigin(origins = {
-        "http://localhost:4200",
-        "https://skillbridge-sepia.vercel.app"
-})
 public class ReviewController {
 
     private final ReviewService reviewService;
@@ -22,8 +19,15 @@ public class ReviewController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Review> addReview(@RequestParam Long learnerId, @RequestParam Long workshopId, @RequestBody Review review) {
-        return ResponseEntity.ok(reviewService.addReview(learnerId, workshopId, review));
+    public ResponseEntity<Review> addReview(@RequestBody ReviewRequest request) {
+        Review review = new Review();
+        review.setRating(request.getRating());
+        review.setComment(request.getComment());
+        return ResponseEntity.ok(reviewService.addReview(
+                request.getLearnerId(),
+                request.getWorkshopId(),
+                review
+        ));
     }
 
     @GetMapping("/workshop/{workshopId}")

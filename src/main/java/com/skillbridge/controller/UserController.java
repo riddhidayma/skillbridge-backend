@@ -5,12 +5,8 @@ import com.skillbridge.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController // Tells Spring this class handles REST API requests
-@RequestMapping("/api/users") // The base URL for all endpoints in this controller
-@CrossOrigin(origins = {
-        "http://localhost:4200",
-        "https://skillbridge-sepia.vercel.app"
-}) // Crucial: Allows your Angular frontend to talk to this API
+@RestController
+@RequestMapping("/api/users")
 public class UserController {
 
     private final UserService userService;

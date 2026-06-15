@@ -9,10 +9,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/workshops")
-@CrossOrigin(origins = {
-        "http://localhost:4200",
-        "https://skillbridge-sepia.vercel.app"
-})
 public class WorkshopController {
 
     private final WorkshopService workshopService;
